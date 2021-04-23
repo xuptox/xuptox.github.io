@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://xuptox.org/sitemap.xml
+Sitemap: https://www.xuptox.org/sitemap.xml
